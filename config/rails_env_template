@@ -1,6 +1,6 @@
 export DOMAIN=yourdomain
 
-# smtp email
+# smtp mailgun email
 export MAIL_USERNAME=your_email_username
 export MAIL_PASSWORD=your_email_password
 
