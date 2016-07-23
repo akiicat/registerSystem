@@ -7,4 +7,4 @@
   %td= params_teacher.email
   %td
     - vacancy = params_teacher.vacancies.find_by(:year => params_year)
-    = link_to('詳細資料', admin_vacancy_path(vacancy.confirm), :class => 'secondary-content pad-left-12')
+    = link_to('show', admin_vacancy_path(vacancy.confirm), :class => 'secondary-content pad-left-12')
