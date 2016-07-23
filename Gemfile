@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# seed dump
+# https://github.com/rroblak/seed_dump
+gem 'seed_dump'
+
 gem 'awesome_print'
 
 # https://github.com/Eric-Guo/where-or
