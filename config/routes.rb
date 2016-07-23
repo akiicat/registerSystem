@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get       'logout'            => 'login#logout'
     post      'authentication'    => 'login#auth', :as => 'auth'
     
-    resources :titles, :groups, :categories, :only => [:index, :create, :update, :destroy] do
+    resources :titles, :categories, :only => [:index, :create, :update, :destroy] do # :groups
       get     'edit'      , :on => :collection
     end
     
