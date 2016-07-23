@@ -21,6 +21,8 @@ Category.create!(:id => 3, :category => "類比電路學群")
 Category.create!(:id => 4, :category => "訊號與系統、通訊、控制學群")
 Category.create!(:id => 5, :category => "生醫電子、光電學群")
 
+# create group here
+# goto rails console if you want to modify after rake db:seed
 Group.create!(:id => 1, :group => "甄試甲 (固態)")
 Group.create!(:id => 2, :group => "甄試乙A (類比)")
 Group.create!(:id => 3, :group => "甄試乙B (數位通訊EDA)")
