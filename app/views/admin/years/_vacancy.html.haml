@@ -9,7 +9,7 @@
 
 - params_teachers.each do |teacher|
   %tr
-    %td= teacher.name
+    %td= truncate(teacher.name, length: 4)
     - vacancy = teacher.vacancies.find_by(:year => params_year)
     - number_list = to_number(vacancy)
     - remain_list = to_remain(vacancy)
