@@ -1,0 +1,17 @@
+%h2.caption= "系所師資 - #{@teacher.name}"
+.divider
+.header_information
+
+.row
+  .col.s3
+    %ul.collection.with-header.z-depth-1
+      = link_to(teacher_path(@teacher.salt[0..7]), remote: true) do
+        %li.collection-header.waves-effect.waves-teal.black-text{:style => 'width: 100%'}
+          %span= "個人資料"
+      %li.collection-header.black-text{:style => 'width: 100%'}
+        %span= "歷年資料"
+      = render :partial => 'year_left_bar', :collection => @years, :as => :params_year, locals: {params_teacher: @teacher}
+
+  .col.s9
+    #show_area
+      = render :partial => 'show_teacher', locals: { params_teacher: @teacher }

@@ -1,0 +1,17 @@
+.card-panel
+  %h3= "#{@teacher.name} 教授您好："
+  .header_information
+    %p= "\n教授 #{@teacher_co.name} 邀請您共同指導研究生 #{@student.name}"
+    %p= "請登入研究生管理系統頁面回覆您的決定"
+    
+  .header_information
+    %p 
+      教師登入頁面：
+      = link_to(@user_url, @user_url)
+    %p
+      研究所師資管理系統頁面：
+      = link_to(@guest_url, @guest_url)
+    %p 請勿回信 有任何問題請聯絡系辦
+
+
+

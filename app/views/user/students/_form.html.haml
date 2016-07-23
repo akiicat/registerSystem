@@ -1,0 +1,31 @@
+/ params_student: @student, params_groups: @groups, params_teachers: @teachers
+
+.header_information
+  %h5 Step 1. 選取研究生組別 與 是否使用共指名額
+.row
+  .col.s12
+    .card-panel
+      .header_button.form-group
+        = f.label(:group_id, '研究生組別')
+        = f.collection_select(:group_id, params_groups, :id, :group)
+      .header_button.form-group
+        = f.check_box(:personal, {}, "true", "false")
+        = f.label(:personal, '是否使用個人名額')
+
+.header_information
+  %h5 Step 2. 新增 或 邀請另外一位教授共同指導
+.row
+  .col.s6
+    .card-panel
+      .header_information.text-center
+        %h6= "新增研究生 #{params_student.name}"
+      .header_button.text-center
+        = f.submit('新增', :class => 'action')
+  .col.s6
+    .card-panel
+      .header_information.text-center
+        %h6= "邀請教授 共同指導研究生 #{params_student.name}"
+      .header_button.text-center
+        %span.pad-right-12
+          = f.collection_select(:coop_vacancy_id, params_teachers.all_sort_by_name, :id, :name)
+        = f.submit('邀請', :class => 'action')

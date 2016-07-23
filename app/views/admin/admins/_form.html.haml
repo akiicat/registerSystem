@@ -1,0 +1,25 @@
+/ params_admin: @admin
+
+%tr
+  %td 管理員
+  %td= f.text_field(:name)
+
+%tr
+  %td 帳號
+  %td= f.text_field(:account)
+
+%tr
+  %td 信箱
+  %td= f.email_field(:email)
+
+%tr
+  %td 驗證碼
+  %td= params_admin.confirm
+
+%tr
+  %td 建立時間
+  %td= params_admin.created_at.localtime
+
+%tr
+  %td 最後更新
+  %td= params_admin.updated_at.localtime

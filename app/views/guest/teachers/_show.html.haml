@@ -1,0 +1,7 @@
+/ show.js.coffee
+
+- if @year
+  = render :partial => 'vacancy', locals: { params_year: @year, params_vacancy: @vacancy, params_students: @students, params_groups: @groups }
+- else
+  = render :partial => 'show_teacher', locals: { params_teacher: @teacher }
+

@@ -1,0 +1,20 @@
+= content_for :left_bar do
+  #left_bar
+    = render(:partial => '/admin/features/overview')
+
+%h2.caption 新增學生
+.divider
+%ol.header_information
+  %li 新增學生時，請以相同的入學組別為單位
+  %li 若為正取生則不需要填備取順序
+  %li 請使用 Gmail 信箱，確保能正常收到信件
+
+= nested_form_for(@group, :url => admin_students_path) do |f|
+  .header_button
+    .secondary-content
+      = f.submit('新增', :class => 'action')
+    = link_to(admin_student_path(@year), :class => 'pad-left-12') do
+      %button 上一頁
+
+  .card-panel
+    = render :partial => 'form', locals: { f: f, params_groups: @groups, params_year: @year }

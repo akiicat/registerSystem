@@ -1,0 +1,28 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+= content_for :sticky_bar do
+  #sticker
+    = render :partial => 'vacancy_sticker', locals: {params_groups: @groups}
+
+%h2.caption #{@year} - 編輯名額 #{@archive}
+.divider
+
+= form_tag(admin_year_path(@year), :method => 'PATCH') do
+  .header_button
+    = render :partial => 'header_button', locals: {params_year: @year}
+
+  #sticker-sensor.card-panel
+    %table.highlight
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/
+      %col{:width => "10%"}/  
+      %tbody
+      = render :partial => 'vacancy', locals: {params_year: @year, params_groups: @groups, params_teachers: @teachers}

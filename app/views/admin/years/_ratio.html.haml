@@ -1,0 +1,10 @@
+/ params_teacher params_year params_students
+
+%tr
+  %td= params_teacher.name
+  %td= params_teacher.vacancies.find_by(:year => params_year).ratio
+  %td= params_students.where('year = ? AND (vacancy_id = ? OR coop_vacancy_id = ?)', params_year, params_teacher.id, params_teacher.id).count
+  %td= params_teacher.email
+  %td
+    - vacancy = params_teacher.vacancies.find_by(:year => params_year)
+    = link_to('詳細資料', admin_vacancy_path(vacancy.confirm), :class => 'secondary-content pad-left-12')

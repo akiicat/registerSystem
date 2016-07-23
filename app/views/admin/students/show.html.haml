@@ -1,0 +1,29 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption #{@year} - 學生
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+  
+%ol.header_information
+  %li 新增學生時，請以相同的入學組別為單位
+
+.header_button
+  = link_to(new_admin_student_path(:year => @year), :class => 'secondary-content pad-left-12') do
+    %button.action 新增學生
+  = link_to(admin_students_path, :class => 'pad-left-12') do
+    %button 上一頁
+
+
+.card-panel
+  %table.highlight
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %col{:width => "12.5%"}/
+    %col{:width => "12.5%"}/
+    %col{:width => "10%"}/
+    %tbody
+      = render :partial => 'student', locals: {params_year: @year, params_groups: @groups, params_students: @students, params_teachers: @teachers, params_vacancies: @vacancies}

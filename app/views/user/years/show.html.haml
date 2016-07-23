@@ -1,0 +1,32 @@
+%h2.caption #{@year} - 師資名額
+.divider
+
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+.header_button
+  = link_to(user_years_path, :class => 'pad-left-12') do
+    %button 年度選單
+  = link_to(new_user_student_path(:year => @year), :class => 'secondary-content pad-left-12')  do 
+    %button.action 新增學生
+  /= link_to(vacancy_user_teacher_path(@teacher.salt, :year => @year.year), :class => 'secondary-content pad-left-12') do
+  /  %button.share 教師名額
+
+
+.card-panel
+  %table.highlight
+    %col{:width => "20%"}/
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %tbody
+      = render :partial => 'vacancy', locals: {params_vacancy: @vacancy, params_groups: @groups, params_students: @students}
+
+.card-panel
+  %table.highlight
+    %col{:width => "20%"}/
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %tbody
+      = render :partial => 'student', locals: {params_students: @students, params_groups: @groups, params_vacancy: @vacancy, params_vacancies: @vacancies}

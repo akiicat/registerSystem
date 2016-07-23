@@ -1,0 +1,28 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/teacher_list', locals: {params_titles: @titles, params_teachers: @teachers}
+
+%h2.caption 系所師資
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+.header_button
+  = link_to(new_admin_teacher_path, :class => 'secondary-content pad-left-12') do
+    %button.action 新增
+  = link_to(password_admin_teachers_path, :class => 'pad-left-12') do
+    %button 帳號管理
+
+.card-panel
+  %table.highlight
+    %tbody
+      %tr
+        %td 姓名
+        %td 帳號
+        %td 共指名額
+        %td 信箱
+        %td
+
+      = render :partial => 'account', :collection => @teachers.all_sort_by_name, :as => :params_teacher
+

@@ -1,0 +1,30 @@
+/ params_students: @students, params_groups: @groups, params_vacancy: @vacancy, params_vacancies: @vacancies
+
+%tr
+  %td 研究生組別
+  %td.text-center 學生姓名
+  %td.text-center 狀態
+  %td
+  %td
+
+
+- params_students.all_sort_by_name.each do |student|
+  %tr{:id => "li_student_#{student.id}"}
+    %td{:id => "group_student_#{student.id}" }
+      / 研究生組別
+      = (student.group) ? params_groups.find(student.group).group[0..3] : "-"
+    %td.text-center{:id => "name_student_#{student.id}"  }= student.name
+    %td.text-center{:id => "status_student_#{student.id}"}
+      / 狀態
+      = color_status(student.status)
+      = (student.repl) ? "更換" : ""
+    %td
+      / 共指
+      - v1 = student.vacancy_id      if student.vacancy_id
+      - v2 = student.coop_vacancy_id if student.coop_vacancy_id
+      - if student.coop
+        - coop_vacancy = (params_vacancy.id == v1) ? v2 : v1
+        = "與 #{params_vacancies.find(coop_vacancy).teacher.name} 共指"
+    %td
+      = link_to('show', user_student_path(student.confirm), :class  => 'secondary-content pad-left-12')
+

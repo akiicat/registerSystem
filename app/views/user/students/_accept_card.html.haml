@@ -1,0 +1,23 @@
+/ params_student: @student, params_groups: @groups
+
+.row
+  .col.s6
+    .card-panel
+      .header_information.text-center
+        %h6
+          使用
+          %span.blue-text= params_groups.find(params_student.group_id).group
+          = "名額 新增研究生 #{params_student.name}"
+      .header_button.text-center
+        = link_to(accept_user_student_path(params_student.confirm, personal: false), :method => :post) do
+          %button.action 新增
+  .col.s6
+    .card-panel
+      .header_information.text-center
+        %h6
+          使用
+          %span.blue-text 個人名額
+          = "新增研究生 #{params_student.name}"
+      .header_button.text-center
+        = link_to(accept_user_student_path(params_student.confirm, personal: true), :method => :post) do
+          %button.action 新增

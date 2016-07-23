@@ -1,0 +1,22 @@
+%br
+%h2.caption 系所師資
+.divider
+= form_tag(teachers_path, :method => 'GET', :id => 'teachers_search', remote: true)do
+  .header_information
+    = label(:search, "搜尋")
+    = text_field_tag :search, params[:serach], :placeholder => '請輸入任何訊息，姓名、信箱、專長......'
+    = submit_tag "Search", :name => nil, :class => 'hidden'
+
+.card-panel
+  %table.highlight
+    %col{:width => "15%"}/
+    %col
+    %col{:width => "5%"}/
+    %thead
+      %tr
+        %td 教師
+        %td 專長
+    %tbody#teachers
+      = render @teachers
+
+

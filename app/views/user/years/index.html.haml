@@ -1,0 +1,27 @@
+%h2.caption 歷年名額
+.divider
+
+.header_information
+  .green-text= flash[:notice]
+  .red-text=   flash[:error]
+
+.header_information
+  %li 請點選特定年份 來查看師資名額資料
+  %li 封存的年份無法新增學生、編輯學生、刪除學生、接收邀請、取消邀請、拒絕邀請
+
+/ .header_button
+/   = link_to(edit_user_teacher_path(@teacher.confirm), :class => 'pad-left-12') do
+/     %button 修改密碼
+
+.card-panel
+  %table.highlight
+    %col{:width => "10%"}/
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %tbody
+      %tr
+        %td 年份
+        %td.text-center 研究生人數
+        %td.text-center 封存
+        %td
+      = render :partial => 'year', :collection => @years, :as => :params_year, locals: {params_teacher: @teacher, params_students: @students}

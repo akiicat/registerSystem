@@ -1,0 +1,25 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption 職稱
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+= form_tag(admin_title_path(@titles.count), :method => 'PATCH') do
+  .header_button
+    .secondary-content.pad-left-12
+      %button.action 更新
+    = link_to(admin_titles_path, :class => 'pad-left-12') do
+      %button 上一頁
+
+  .card-panel
+    %table.highlight
+      %col/
+      %col{:width => "10%"}/
+      %tbody#tbody_title
+        - @titles.each do |title|
+          %tr
+            %td= text_field_tag("title_ids[#{title.id}][title]", title.title)

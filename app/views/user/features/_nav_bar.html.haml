@@ -1,0 +1,18 @@
+/ params_teacher: @teacher
+
+%nav.nav-wrapper.teal.darken-1
+  .container
+    / %a.button-collapse{"data-activates" => "slide-out", :href => "#"}
+    /   %i.mdi-navigation-menu
+    = link_to('電子工程系及電子研究所', teachers_path, :method => :get, :class => "brand-logo", :onmouseover => "this.style.textDecoration = 'none';")
+
+    %ul.right.hide-on-med-and-down
+      - if params_teacher
+        %li= link_to('年度選單', user_years_path, :method => :get, :onmouseover => "this.style.textDecoration = 'none';")
+        %li
+          = link_to(edit_user_teacher_path(params_teacher.confirm), :method => :get, :onmouseover => "this.style.textDecoration = 'none';") do
+            修改密碼
+        %li= link_to('登出', user_logout_path, :method => :get, :onmouseover => "this.style.textDecoration = 'none';")
+      %li
+        = link_to(user_login_path, :method => :get, :onmouseover => "this.style.textDecoration = 'none';") do
+          = (params_teacher) ? "#{params_teacher.name} 您好" : '教師登入'

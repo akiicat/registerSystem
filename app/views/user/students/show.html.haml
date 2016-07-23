@@ -1,0 +1,30 @@
+%h2.caption #{@year} - #{@student.name} 學生
+.divider
+
+.header_information
+/ %li
+
+- v1 = @student.vacancy_id      if @student.vacancy_id
+- v2 = @student.coop_vacancy_id if @student.coop_vacancy_id
+.header_button
+  = link_to(user_year_path(@year), :class => 'pad-left-12') do
+    %button 上一頁
+  - if @student.status.in? ['inviting', 'completed'] and @vacancy.id.in? [v1, v2]
+    = link_to(user_student_path(@student.confirm), :method => :delete, :class => 'secondary-content pad-left-12', data: {confirm: "確定要取消指導此學生?" }) do
+      %button.create
+        = "拒絕邀請" if @student.status.in? ['inviting']  and @vacancy.id.in? [v2]
+        = "取消邀請" if @student.status.in? ['inviting']  and @vacancy.id.in? [v1]
+        = "取消指導" if @student.status.in? ['completed'] and @vacancy.id.in? [v1, v2]
+
+- if @student.status.in? ['inviting'] and @vacancy.id.in? [v2]
+  = render :partial => 'accept_card', locals: {params_student: @student, params_groups: @groups}
+
+#show_area
+  .card-panel
+    %table.highlight
+      %col{:width => "20%"}/
+      %col{:width => "30%"}/
+      %col{:width => "20%"}/
+      %col{:width => "30%"}/
+      %tbody
+        = render :partial => 'show_student', locals: {params_student: @student, params_groups: @groups, params_vacancies: @vacancies, params_teachers: @teachers}

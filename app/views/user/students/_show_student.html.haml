@@ -1,0 +1,64 @@
+/ params_student: @student, params_groups: @groups, params_vacancies: @vacancies, params_teachers: @teachers
+
+- v1  = params_student.vacancy_id
+- v2  = params_student.coop_vacancy_id
+- r1  = params_student.replaced_id
+- r2  = params_student.coop_replaced_id
+- gid = params_student.group_id
+- eid = params_student.entry_group_id
+
+
+%tr
+  %td 姓名
+  %td{:colspan => "3"}= params_student.name
+%tr
+  %td 入學年份
+  %td{:colspan => "3"}= params_student.year
+%tr
+  %td 入學組別
+  %td{:colspan => "3"}= params_groups.find(eid).group if eid
+%tr
+  %td 正/備取
+  %td{:colspan => "3"}
+    - list  = params_student.waiting_list
+    = (list) ? "備取 #{list}" : "正取"
+%tr
+  %td 電話
+  %td{:colspan => "3"}= params_student.phone
+%tr
+  %td 信箱
+  %td{:colspan => "3"}= params_student.email
+
+%tr
+  %td 狀態
+  %td{:colspan => "3"}
+    = color_status(params_student.status)
+    = (params_student.repl) ? "更換" : ""
+%tr
+  %td 研究生組別
+  %td{:colspan => "3"}= params_groups.find(gid).group if gid
+%tr
+  %td 現任指導教授 (新)
+  %td
+    = params_vacancies.find(v1).teacher.name if v1
+    %span.pad-left-12
+      = params_student.personal ? "(個人名額)" : "-"
+  %td 現任共同指導 (新)
+  %td
+    = params_vacancies.find(v2).teacher.name if v2
+    %span.pad-left-12
+      = params_student.coop_personal ? "(個人名額)" : "-"
+%tr
+  %td 更換前指導教授 (舊)
+  %td= params_teachers.find(r1).name if r1
+  %td 更換前共同指導 (舊)
+  %td= params_teachers.find(r2).name if r2
+
+
+
+
+
+
+
+ 
+

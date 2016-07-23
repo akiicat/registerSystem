@@ -1,0 +1,8 @@
+%tr
+  %td= teacher.name
+  /%td= teacher.specialty
+  %td= truncate(teacher.specialty, length: 45)
+  %td.no-padding
+    = link_to(teacher_path(teacher.salt[0..7])) do
+      %i.material-icons chevron_right
+      

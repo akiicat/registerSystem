@@ -1,0 +1,30 @@
+%h2.caption 修改密碼
+.divider
+
+.header_information
+  .green-text= flash[:notice]
+  .red-text= flash[:error]
+
+.header_information
+  %li 個人資料若需修改請連絡系辦
+
+= form_for(@teacher, :url => user_teacher_path(@teacher.confirm), :method => 'patch') do |f|
+  .header_button
+    .secondary-content.pad-left-12
+      = f.submit('更新密碼', :class => 'action')
+    = link_to(user_years_path, :class => 'pad-left-12') do
+      %button 年度選單
+
+  .card-panel
+    %table.highlight
+      %tbody
+        = render :partial => 'admin/admins/password', :locals => { :f => f }
+
+  .card-panel
+    %table.highlight
+      %col{:width => "25%"}/
+      %col{:width => "35%"}/
+      %col{:width => "40%"}/
+      %tbody
+        = render :partial => 'form', locals: {f: f, params_teacher: @teacher}
+

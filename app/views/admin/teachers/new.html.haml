@@ -1,0 +1,20 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/teacher_list', locals: {params_titles: @titles, params_teachers: @teachers}
+
+%h2.caption 新增師資
+.divider
+%ol.header_information
+  %li 密碼不填則為亂碼，用帳號管理來寄送密碼給教授
+
+= form_for(@teacher, :url => admin_teachers_path, :method => :post) do |f|
+  .header_button
+    .secondary-content
+      = f.submit('新增', :class => 'action')
+    = link_to(admin_teachers_path) do
+      %button 上一頁
+
+  .card-panel
+    %table.highlight
+      %tbody
+        = render :partial => 'form', :locals => { :f => f }

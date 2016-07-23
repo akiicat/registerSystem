@@ -1,0 +1,20 @@
+/ params_groups: @groups
+
+.card-panel.z-depth-0.teal.white-text.no-margin.no-padding-vertical
+  %table
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/
+    %col{:width => "10%"}/  
+    %tbody
+      %tr
+        %td 姓名
+        - params_groups.each do |group|
+          %td.text-center
+            = group.group[0..3]
+        %td

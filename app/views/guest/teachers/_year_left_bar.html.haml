@@ -1,0 +1,7 @@
+/ :as => :params_year, locals: {params_teacher: @teacher}
+
+= link_to(teacher_path(params_teacher.salt[0..7], :year => params_year), remote: true) do
+  %li.collection-item.waves-effect.waves-teal.teal-text.text-darken-1{:style => 'width: 100%'}
+    %span.pad-left-12= params_year
+
+

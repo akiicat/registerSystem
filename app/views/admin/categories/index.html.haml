@@ -1,0 +1,25 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption 職稱
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+= form_for(@category, :url => admin_categories_path(@category), :remote => true) do |f|
+  .header_button
+    = f.text_field(:category, :placeholder => '新增職稱')
+    %span.pad-left-12= f.submit('新增')
+    = link_to(edit_admin_categories_path, :class => 'secondary-content pad-left-12') do
+      %button.action 編輯
+
+
+.card-panel
+  %table.highlight
+    %col/
+    %col{:width => "10%"}/
+    %tbody#tbody_category
+      = render @categories
+

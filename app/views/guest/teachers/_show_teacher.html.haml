@@ -1,0 +1,46 @@
+/ params_teacher: params_teacher
+
+.card-panel
+  %table.highlight
+    %col{:width => "35%"}/
+    %tbody
+      %tr
+        %td 姓名
+        %td= params_teacher.name
+      %tr
+        %td Email
+        %td= params_teacher.email
+      %tr
+        %td 職稱
+        %td= params_teacher.title.title
+
+      %tr
+        %td 最高學歷
+        %td= (params_teacher.education.blank?) ? '-' : params_teacher.education
+      %tr
+        %td 學群
+        %td
+          - if params_teacher.categories.count == 0
+            = '-'
+          - params_teacher.categories.each do |category|
+            %div= category.category
+      %tr
+        %td 專長
+        %td= (params_teacher.specialty.blank?) ? '-' : params_teacher.specialty
+
+      %tr
+        %td 電話 (O)
+        %td= (params_teacher.phoneO.blank?) ? '-' : params_teacher.phoneO
+      %tr
+        %td 辦公室 (O)
+        %td= (params_teacher.officeO.blank?) ? '-' : params_teacher.officeO
+      %tr
+        %td 電話 L
+        %td= (params_teacher.phoneL.blank?) ? '-' : params_teacher.phoneL
+      %tr
+        %td 辦公室 (L)
+        %td= (params_teacher.officeL.blank?) ? '-' : params_teacher.officeL
+
+      %tr
+        %td 備註
+        %td= (params_teacher.note.blank?) ? '-' : params_teacher.note

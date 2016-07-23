@@ -1,0 +1,10 @@
+%tr{:id => "li_category_#{category.id}"}
+  %td{:id => "view_category_#{category.id}"}= category.category   
+
+  %td= link_to('刪除', admin_category_path(category),  |
+    :method => 'DELETE',  |
+    :remote => true,  |
+    :class  => 'secondary-content pad-left-12',  |
+    :id     => "delete_category_#{category.id}",  |
+    :data   => { :confirm => "是否刪除 #{category.category} ?"})  |
+

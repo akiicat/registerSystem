@@ -1,0 +1,26 @@
+%br
+%h2.caption.center-align Administrator Login
+.divider
+.header_information
+
+
+= form_for @admin, {:url => admin_auth_path(@admin), :html => {:class => 'col s12'}} do |f|
+  .row
+    .col.s6.offset-s3
+      .card-panel
+        .input-field
+          =# label_tag :account, "username"
+          = f.text_field :account, :class => 'validate', :placeholder => '帳號 Username'
+        .input-field
+          =# label_tag :password, "Password"
+          = f.password_field :password, :placeholder => '密碼 Password', :class => 'validate'
+          
+        %br
+          = flash[:error]
+        %br
+        .divider
+        %br
+
+        %button.btn.teal.darken-1
+          Submit
+          %i.mdi-content-send.right

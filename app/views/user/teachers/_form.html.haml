@@ -1,0 +1,51 @@
+/ params_teacher: @teacher
+
+%tr
+  %td 教師姓名
+  %td{:colspan => "2"}= params_teacher.name
+
+%tr
+  %td 帳號
+  %td{:colspan => "2"}= params_teacher.account
+%tr
+  %td 共指名額
+  %td= params_teacher.default_ratio
+  %td (新增共同指導學生時，會使用多少個名額)
+
+%tr
+  %td 信箱 
+  %td= params_teacher.email
+  %td (通知訊息將會寄到此信箱)
+
+%tr
+  %td 電話 (O)
+  %td= (params_teacher.phoneO.blank?) ? '-' : params_teacher.phoneO
+  %td= (params_teacher.officeO.blank?) ? '-' : params_teacher.officeO
+%tr
+  %td 電話 L
+  %td= (params_teacher.phoneL.blank?) ? '-' : params_teacher.phoneL
+  %td= (params_teacher.officeL.blank?) ? '-' : params_teacher.officeL
+%tr
+  %td 最高學歷
+  %td{:colspan => "2"}= (params_teacher.education.blank?) ? '-' : params_teacher.education
+%tr
+  %td 學群
+  %td{:colspan => "2"}
+    - if params_teacher.categories.count == 0
+      = '-'
+    - params_teacher.categories.each do |category|
+      %div= category.category
+%tr
+  %td 專長
+  %td{:colspan => "2"}= (params_teacher.specialty.blank?) ? '-' : params_teacher.specialty
+%tr
+  %td 備註
+  %td{:colspan => "2"}= (params_teacher.note.blank?) ? '-' : params_teacher.note
+
+%tr
+  %td 建立時間於
+  %td{:colspan => "2"}= params_teacher.created_at.localtime
+
+%tr
+  %td 最後更新於
+  %td{:colspan => "2"}= params_teacher.updated_at.localtime

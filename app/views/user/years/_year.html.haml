@@ -1,0 +1,13 @@
+/ :as => :params_year, locals: {params_teacher: @teacher, params_students: @students}
+
+%tr
+  %td= params_year.year
+  - vacancy = params_teacher.vacancies.find_by(:year => params_year.year)
+  - sql = 'year = ? AND (vacancy_id = ? OR coop_vacancy_id = ?)'
+  - count = params_students.where(sql, params_year.year, vacancy.id, vacancy.id).count
+  %td.text-center= "#{count} 人"
+  %td.text-center= params_year.archive ? '封存' : '-'
+  %td
+    /Show special year's vacancy
+    = link_to(user_year_path(params_year.year), :class => 'secondary-content pad-left-12')  do 
+      年度名額

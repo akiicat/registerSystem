@@ -1,0 +1,21 @@
+/ params_groups params_year
+
+= hidden_field_tag(:year, params_year)
+
+.form-group.header_information
+  = label_tag(:group, '入學組別')
+  = collection_select(:group, :id, params_groups, :id, :group)
+  %br
+
+= f.fields_for :students do |li|
+  .pad-bottom-12
+    = li.text_field :name, :placeholder => "姓名"
+    = li.telephone_field :phone, :placeholder => "電話"
+    = li.text_field :email, :placeholder => "信箱"
+    = li.number_field :waiting_list, :placeholder => "備取順序", :min => 0
+    = li.link_to_remove(:class => "secondary-content", :tabindex => "-1") do 
+      %button.create{:tabindex => "-1"} 移除
+
+= f.link_to_add :students do
+  %button.action 增加學生
+

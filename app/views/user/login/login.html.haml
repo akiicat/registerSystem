@@ -1,0 +1,34 @@
+%br
+%h2.caption.center-align 教師登入頁面
+%br
+
+.divider
+
+%br
+%br
+%br
+
+
+= form_for @teacher, {:url => user_auth_path, :html => {:class => 'col s12'}, :remote => true} do |f|
+  .row
+    .col.s6.offset-s3
+      .card-panel
+        .input-field
+          = label_tag :account, "帳號 Username"
+          = f.text_field :account, :class => 'validate'#, :placeholder => '帳號 Username'
+        .input-field
+          = label_tag :password, "密碼 Password"
+          = f.password_field :password, :class => 'validate'#, :placeholder => '密碼 Password'
+        
+
+        %br
+        .divider
+        %br
+
+        %button.btn.teal.darken-1
+          Submit
+          %i.mdi-content-send.right
+        %span.pad-left-24
+          = link_to('忘記帳號或密碼?', user_forgot_path, :method => :get)
+        
+

@@ -1,0 +1,29 @@
+/ params_year: @year, params_vacancy: @vacancy, params_students: @students, params_groups: @groups
+
+.card-panel
+  %table.highlight
+    %col{:width => "35%"}/
+    %col{:width => "65%"}/
+    %tbody
+      %tr
+        %td= "年份 - #{params_year}"
+        %td 剩餘名額
+
+      / 教師名額
+      - vacancy = params_vacancy
+      - remain_list = to_remain(vacancy)
+      - params_groups.each do |group|
+        - remain = remain_list["group_#{group.id}"].to_f
+        %tr
+          %td= group.group
+          %td= (remain > 0) ? '✔' : '-'
+
+      %tr
+        %td 學生
+        %td
+          - sql = 'year = ? AND status = ? AND (vacancy_id = ? OR coop_vacancy_id = ?)'
+          - students = params_students.where(sql, vacancy.year, 'completed', vacancy.id, vacancy.id)
+          - ap students
+          - students.each do |student|
+            = link_to(student_path(student.confirm, :format => :pdf), :onclick => "Materialize.toast('<span>檔案生成中</span>', 7000);") do
+              %p= student.name

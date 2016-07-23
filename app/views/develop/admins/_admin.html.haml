@@ -1,0 +1,8 @@
+%tr
+  %td= admin.name
+  %td= admin.account
+  %td= admin.email
+  %td
+    /edit
+    = link_to('編輯', edit_develop_admin_path(admin), |
+      :class  => 'secondary-content') |

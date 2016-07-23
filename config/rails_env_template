@@ -1,0 +1,18 @@
+export DOMAIN=yourdomain
+
+# smtp email
+export MAIL_USERNAME=your_email_username
+export MAIL_PASSWORD=your_email_password
+
+# use digest/sha create hash password
+# Ex:    if your password is 123456
+# in rails console
+#   require 'digest/sha1'
+#   Digest::SHA1.hexdigest('123456')      => "7c4a8d09ca3762af61e59520943dc26494f8941b"
+# and export
+#   export DEV_PASSWORD="7c4a8d09ca3762af61e59520943dc26494f8941b"
+export DEV_USERNAME=dev_username
+export DEV_PASSWORD=Digest::SHA1.hexdigest(dev_password)
+
+export SECRET_KEY_BASE=rake_secret
+export SECRET_TOKEN=rake_secret

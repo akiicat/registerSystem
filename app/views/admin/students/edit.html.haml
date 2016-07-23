@@ -1,0 +1,33 @@
+= content_for :left_bar do
+  #left_bar
+    = render(:partial => '/admin/features/overview')
+
+%h2.caption 編輯學生
+.divider
+%ol.header_information
+  %li 若為正取生則不需要填寫備取順序
+  %li 若指導教授與共指教授相同，則會刪除共指教授 (同更換教授)
+  %li 填共指教授前，請先確認有指導教授 (同更換教授)
+  %li 更換教授的表單為更換教授協議書
+  %li 有研究生組別後，在填寫現任指導教授與更換前指導教授
+  %li 請使用 Gmail 信箱，確保能正常收到信件
+  
+
+= form_for(@student, :url => admin_student_path(@student.confirm), :method => 'PATCH') do |f|
+  .header_button
+    .secondary-content
+      = f.submit('更新', :class => 'action')
+
+    = link_to(admin_student_path(@year), :class => 'pad-left-12') do
+      %button 上一頁
+    /Destroy
+    = link_to(admin_student_path(@student.confirm),  |
+      :method => 'DELETE',                         |
+      :class  => 'pad-left-12',  |
+      :data   => { :confirm => "是否要刪除此學生 #{@student.name}" }) do |
+      %button.create 刪除
+
+
+  .card-panel
+    = render :partial => 'edit_form', :locals => { :f => f }
+  

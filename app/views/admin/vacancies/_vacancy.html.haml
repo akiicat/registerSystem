@@ -1,0 +1,28 @@
+/ params_vacancy: @vacancy, params_groups: @groups, params_students: @students
+
+%tr
+  %td 組別
+  %td.text-center 所有名額
+  %td.text-center 剩餘名額
+  %td= color_coop("一般生", false) + "/" + color_coop("共指生", true)
+
+- number_list = to_number(params_vacancy)
+- remain_list = to_remain(params_vacancy)
+- params_groups.each do |group|
+  - number = number_list["group_#{group.id}"]
+  - remain = remain_list["group_#{group.id}"]
+  %tr
+    %td= group.group
+    %td.text-center= color_number(number)
+    %td.text-center= color_number(remain)
+    %td
+      - vid = params_vacancy.id
+      - if group.id != 8
+        - params_students.where('group_id = ? and ((vacancy_id = ? AND personal = ?) OR (coop_vacancy_id = ? AND coop_personal = ?))', group.id, vid, false, vid, false).each do |student|
+          - unless student.status.in? ['inviting'] and student.coop_vacancy_id == vid
+            = color_coop(student.name, student.coop)
+      - if group.id == 8
+        - params_students.where('(vacancy_id = ? AND personal = ?) OR (coop_vacancy_id = ? AND coop_personal = ?)', vid, true, vid, true).each do |student|
+          - unless student.status.in? ['inviting'] and student.coop_vacancy_id == vid
+            %div
+              = color_coop("#{student.name} - #{student.group.group}", student.coop)

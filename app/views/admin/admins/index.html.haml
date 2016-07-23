@@ -1,0 +1,19 @@
+= content_for :left_bar do
+  #left_bar
+    = render(:partial => '/admin/features/overview')
+
+%h2.caption 管理員個人資料
+.divider
+
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+.header_button
+  = link_to(edit_admin_admin_path(@admin.confirm), :class => 'pad-left-12') do
+    %button.action 編輯
+
+.card-panel
+  %table.highlight
+    %tbody
+      = render :partial => 'show', locals: {params_admin: @admin}

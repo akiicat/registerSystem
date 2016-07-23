@@ -1,0 +1,12 @@
+/ params_year
+
+%tr
+  %td= params_year
+  %td= params_archive ? '封存' : '-'
+  %td= "#{params_count} 人"
+  %td
+    - if current_page?(:controller => :years)
+      = link_to('詳細資料', ratio_admin_year_path(params_year) , :class => 'secondary-content pad-left-12')
+
+    - if current_page?(:controller => :students)
+      = link_to('詳細資料', admin_student_path(params_year), :class => 'secondary-content pad-left-12')

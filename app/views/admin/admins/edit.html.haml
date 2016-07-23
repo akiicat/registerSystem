@@ -1,0 +1,28 @@
+= content_for :left_bar do
+  #left_bar
+    = render(:partial => '/admin/features/overview')
+
+%h2.caption 管理員個人資料
+.divider
+
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+= form_for(@admin, :url => admin_admin_path(@admin.confirm), :method => 'patch') do |f|
+  .header_button
+    .secondary-content.pad-left-12
+      = f.submit('更新', :class => 'action')
+    = link_to(admin_admins_path, :class => 'pad-left-12') do
+      %button 上一頁
+
+
+  .card-panel
+    %table.highlight
+      %tbody
+        = render :partial => 'form', locals: {f: f, params_admin: @admin}
+
+  .card-panel
+    %table.highlight
+      %tbody
+        = render :partial => 'password', locals: {f: f}

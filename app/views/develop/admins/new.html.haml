@@ -1,0 +1,18 @@
+%h2.caption 新增管理員
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+
+= form_for(@admin, :url => develop_admins_path(@admin), :method => :post) do |f|
+  .header_button
+    .secondary-content.pad-left-12
+      = f.submit('新增', :class => "action")
+    = link_to(develop_admins_path) do
+      %button 上一頁
+
+    .card-panel
+      %table.highlight
+        %tbody
+          = render :partial => 'form', locals: { f: f }

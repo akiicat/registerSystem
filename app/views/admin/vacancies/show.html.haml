@@ -1,0 +1,34 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption #{@year} - #{@teacher.name}
+.divider
+
+.header_button
+  = link_to(admin_year_path(@year), :class => 'pad-left-12') do
+    %button 上一頁
+  = link_to(admin_student_path(@year), :class => 'secondary-content pad-left-12') do
+    %button.action 新增學生
+
+    / .col.s2
+    /   = link_to('共指生', new_admin_student_path(:vacancy => params_vacancy.confirm, :status => "coop"), :class => 'secondary-content pad-left-12', :id => "add_coop_vacancy_#{params_vacancy.id}")
+    /   = link_to('一般生', new_admin_student_path(:vacancy => params_vacancy.confirm, :status => "noco"), :class => 'secondary-content pad-left-12', :id => "add_noco_vacancy_#{params_vacancy.id}")
+
+.card-panel
+  %table.highlight
+    %col{:width => "20%"}/
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %tbody
+      = render :partial => 'vacancy', locals: {params_vacancy: @vacancy, params_groups: @groups, params_students: @students}
+
+.card-panel
+  %table.highlight
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %col{:width => "12.5%"}/
+    %col{:width => "12.5%"}/
+    %col{:width => "10%"}/
+    %tbody
+      = render :partial => '/admin/students/student', locals: {params_students: @students, params_groups: @groups, params_vacancy: @vacancy, params_vacancies: @vacancies}

@@ -1,0 +1,14 @@
+/ show.js.coffee
+
+.card-panel
+  %table.highlight
+    %col{:width => "20%"}/
+    %col{:width => "30%"}/
+    %col{:width => "20%"}/
+    %col{:width => "30%"}/
+    %tbody
+      = render :partial => 'show_student', locals: {params_student: @student, params_groups: @groups, params_vacancies: @vacancies, params_teachers: @teachers}
+
+- if @student.status.in? ['waiting']
+  = form_for(@student, :url => user_students_path(:confirm => @student.confirm), :method => :post) do |f|
+    = render :partial => 'form', locals: {f: f, params_student: @student, params_groups: @groups, params_teachers: @teachers}

@@ -1,0 +1,18 @@
+/ :as => params_group, locals: {params_students: @students}
+
+- students = params_students.where(:entry_group_id => params_group.id)
+%li
+  .collapsible-header.waves-effect.waves-teal
+    %strong.pad-left-12= params_group.group
+    .secondary-content.black-text= students.count
+  .collapsible-body
+    %ul.collection.no-margin.no-border.z-index-0{"data-collapsible" => "accordion"}
+      - students.all_sort_by_name.each do |student|
+        = link_to(user_student_path(student.confirm), remote: true) do
+          %li.collection-item.waves-effect.waves-teal.teal-text.text-darken-1{:style => 'width: 100%'}
+            %span.pad-left-12= student.name
+            %span.secondary-content
+              - if student.status.in? ['waiting']
+                .teal-text.text-darken-1 ●
+
+

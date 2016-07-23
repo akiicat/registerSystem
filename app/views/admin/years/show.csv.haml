@@ -1,0 +1,57 @@
+-# first line
+- require 'csv'
+- csv_string = CSV.generate do |csv|
+  - # ------- line  1 -------
+  - line = Array.new
+  - line.push('所屬學群')
+  - line += [''] * (@categories.count-1)
+  - line.push('師資')
+  - line += [''] * 8
+  - line.push('所有名額')
+  - line += [''] * (@groups.count-1)
+  - line.push('剩餘名額')
+  - line += [''] * (@groups.count-1)
+  - csv << line
+
+  - # ------- line  2 -------
+  - line = Array.new 
+  - @categories.each { |category| line.push(category.category) }
+  - line.push('姓名','職稱','最高學歷','專長及研究方向','電話（O)','辦公室（O)','電話（L)','辦公室（L)','EMAIL')
+  - arr = Array.new
+  - @groups.each { |group| arr.push(group.group) }
+  - line += arr * 2
+  - csv << line
+
+  - # ------- content -------
+  - @teachers.each do |teacher| 
+    - line = Array.new
+
+    - # categories
+    - hash = Hash.new 
+    - hash.default = false
+    - teacher.categories.each { |c| hash[c.id] = true }
+    - @categories.each { |c| line.push(hash[c.id] ? '★' : '') }
+
+    - # teacher info
+    - line.push(teacher.name)
+    - line.push(teacher.title.title)
+    - line.push(teacher.education)
+    - line.push(teacher.specialty)
+    - line.push(teacher.phoneO)
+    - line.push(teacher.officeO)
+    - line.push(teacher.phoneL)
+    - line.push(teacher.officeL)
+    - line.push(teacher.email)
+
+    - # groups: number and remain
+    - vacancy = teacher.vacancies.find_by(:year => @year) 
+    - numbers = to_number(vacancy).sort.collect{ |pair| pair[1] } # [["group_1", 0.5], [...], ...]
+    - remains = to_remain(vacancy).sort.collect{ |pair| pair[1] }
+    - line += numbers + remains
+
+    - # students
+    - sql = '(vacancy_id = ? OR coop_vacancy_id = ?)'
+    - students = @students.where(sql, vacancy.id, vacancy.id).pluck(:name)
+    - line.push(students.join(' '))
+    - csv << line
+= csv_string.html_safe

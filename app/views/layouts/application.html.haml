@@ -1,0 +1,47 @@
+!!!
+%html
+  %head
+    %title= @page_title || "Login"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'https://fonts.googleapis.com/icon?family=Material+Icons'
+    = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css'
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js'
+    = csrf_meta_tags
+  %body
+    
+    %nav.nav-wrapper.teal.darken-1
+      .container
+        %a.brand-logo{:href => "#!", :onMouseOver => "this.style.textDecoration = 'none';"} 電子工程系及電子研究所
+        %ul.right.hide-on-med-and-down
+          %li
+            %a{:href => admin_login_path, :onMouseOver => "this.style.textDecoration = 'none';"}
+              %i.large.material-icons perm_identity
+
+  
+    .container
+      .row
+        .col.s12
+          = yield
+
+    %footer.page-footer.teal.darken-1
+      .container
+        .row
+          .col.l6.s12
+            %h5.white-text Footer Content
+            %p.grey-text.text-lighten-4 You can use rows and columns here to organize your footer content.
+          .col.l4.offset-l2.s12
+            %h5.white-text Links
+            %ul
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Link 1
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Link 2
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Link 3
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Link 4
+      .footer-copyright
+        .container
+          © 2014 Copyright Text

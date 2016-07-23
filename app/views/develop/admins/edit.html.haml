@@ -1,0 +1,19 @@
+%h2.caption 編輯管理員 - #{@admin.name}
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+= form_for(@admin, :url => develop_admin_path(@admin), :method => :patch) do |f|
+  .header_button
+    .secondary-content.pad-left-12
+      = f.submit('更新', :class => "action")
+    = link_to(develop_admin_path(@admin.id), :method => :delete, :class  => 'secondary-content pad-left-12', :data => {:confirm => "是否刪除 #{@admin.name} ?"}) do
+      %button.create 刪除
+    = link_to(develop_admins_path) do
+      %button 上一頁
+
+    .card-panel
+      %table.highlight
+        %tbody
+          = render :partial => 'form', locals: { f: f }

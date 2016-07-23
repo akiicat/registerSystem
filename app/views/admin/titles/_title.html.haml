@@ -1,0 +1,10 @@
+%tr{:id => "li_title_#{title.id}"}
+  %td{:id => "view_title_#{title.id}"}= title.title   
+
+  %td= link_to('刪除', admin_title_path(title),  |
+    :method => 'DELETE',  |
+    :remote => true,  |
+    :class  => 'secondary-content pad-left-12',  |
+    :id     => "delete_title_#{title.id}",  |
+    :data   => { :confirm => "是否刪除 #{title.title} ?"})  |
+

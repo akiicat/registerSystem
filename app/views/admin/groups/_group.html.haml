@@ -1,0 +1,20 @@
+%li.collection-item{:id => "li_group_#{group.id}"}
+  %font{:id => "view_group_#{group.id}"}= group.group      
+
+  = link_to('刪除', admin_group_path(group),  |
+    :class  => 'secondary-content pad-left-12 modal-trigger',  |
+    :id     => "delete_group_#{group.id}",  |
+    :method => 'DELETE',  |
+    :remote => true,  |
+    :data   => { :confirm => "是否要刪除 #{group.group} ?"} )  |
+
+  / .modal{:id => "admin_delete_group_#{group.id}"}
+  /   .modal-content
+  /     %h4 刪除
+  /     %hr/
+  /     %p 所有關於此組別的名額與學生將會一併刪除
+  /     %p 是否要刪除 #{group.group} ?
+  /   .modal-footer
+  /     = link_to('刪除', admin_group_path(group), method: 'DELETE', remote: true, class: 'modal-action modal-close waves-effect waves-green btn-flat')
+
+  /     %a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href: "#!"} 取消

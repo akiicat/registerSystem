@@ -1,0 +1,33 @@
+%br
+%h2.caption.center-align 教師登入頁面
+%br
+
+.divider
+
+%br
+%br
+%br
+
+
+= form_for(@teacher, {:url => user_password_path, :html => {:class => 'col s12'}, :remote => true}) do |f|
+  .row
+    .col.s6.offset-s3
+      .card-panel
+        .header_information
+          %p.text-center 研究所師資管理系統中 所使用的信箱 Email
+
+        .input-field
+          = label_tag :email, "信箱 Email"
+          = f.text_field :email, :class => 'validate'#, :placeholder => '信箱 Email'
+
+        %br
+        %br
+        .divider
+        %br
+
+        %button.btn.teal.darken-1
+          寄送新帳號與密碼
+          %i.mdi-content-send.right
+
+        
+

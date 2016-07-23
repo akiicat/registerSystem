@@ -1,0 +1,26 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption #{@year} - 基本資料 #{@archive}
+.divider
+
+.header_button
+  = render :partial => 'header_button', locals: {params_year: @year}
+
+.card-panel
+  %table.highlight
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %col{:width => "15%"}/
+    %col{:width => "30%"}/
+    %tbody
+      %tr
+        %td 姓名
+        %td 共指所用名額
+        %td 學生人數
+        %td 信箱
+        %td 
+      / render(context, options, block)
+      = render(:partial => 'ratio', collection: @teachers, :as => :params_teacher, locals: {params_year: @year, params_students: @students })
+

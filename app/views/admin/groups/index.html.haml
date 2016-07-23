@@ -1,0 +1,21 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption 組別
+.divider
+%br
+
+= link_to(edit_admin_groups_path, :class => 'secondary-content pad-left-12') do
+  %button.action 編輯
+
+%br
+%br
+%br
+
+%ul#ul_group.collection.z-depth-1
+  = render @groups
+
+= form_for(@group, :url => admin_groups_path(@group), :remote => true) do |f|
+  = f.text_field(:group, :placeholder => '新增組別')
+  = f.submit('新增', :class => "secondary-content pad-left-12", :id => "new_group")

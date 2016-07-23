@@ -1,0 +1,29 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/teacher_list', locals: {params_titles: @titles, params_teachers: @teachers}
+
+%h2.caption 編輯師資
+.divider
+%ol.header_information
+  %li 不修改密碼請留空白
+
+= form_for(@teacher, :url => admin_teacher_path(@teacher), :method => :patch) do |f|
+  .header_button
+    .secondary-content.pad-left-12
+      %button.action 修改
+
+    = link_to(admin_teachers_path, :class => "pad-left-12") do
+      %button 上一頁
+    = link_to(admin_teacher_path(@teacher), :method => :delete, :class => 'pad-left-12 pad-right-12', :data => {:confirm => "是否刪除 #{@teacher.name} ?"}) do 
+      - if @std_count == 0
+        %button.create 刪除
+      - else
+        %button.create{:disabled => "disabled"} 刪除
+    = "此老師有 #{@std_count} 位學生"
+
+
+  .card-panel
+    %table.highlight
+      %tbody
+        = render :partial => 'form', :locals => { :f => f }
+  

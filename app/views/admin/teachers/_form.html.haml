@@ -1,0 +1,63 @@
+/ @titles @categories
+
+%tr
+  %td= f.label(:name, '姓名')
+  %td{:colspan=>"3"}= f.text_field(:name)
+  
+%tr
+  %td= f.label(:email, 'e-mail')
+  %td{:colspan=>"3"}= f.text_field(:email)
+  
+%tr
+  %td= f.label(:account, '帳號')
+  %td{:colspan=>"3"}= f.text_field(:account)
+  
+%tr
+  %td= f.label(:password, '密碼')
+  %td{:colspan=>"3"}= f.text_field(:password)
+  
+%tr
+  %td= f.label(:default_ratio, '共指所用名額')
+  %td{:colspan=>"3"}= f.number_field(:default_ratio, :min => 0.5, :max => 1, :step => 0.5)
+  
+%tr
+  %td= f.label(:title_id, '職稱')
+  %td{:colspan=>"3"}= f.collection_select(:title_id, @titles, :id, :title)
+
+%tr
+  %td= f.label(:phoneO, '電話 (O)')
+  %td= f.text_field(:phoneO)
+  %td= f.label(:officeO, '辦公室 (O)')
+  %td= f.text_field(:officeO)
+  
+%tr
+  %td= f.label(:phoneL, '電話 (L)')
+  %td= f.text_field(:phoneL)
+  %td= f.label(:officeL, '辦公室 (L)')
+  %td= f.text_field(:officeL)
+  
+%tr
+  %td= f.label(:education, '最高學歷')
+  %td{:colspan=>"3"}= f.text_area(:education, :style => 'width: 300px')
+  
+%tr
+  %td= f.label(:specialty, '專長')
+  %td{:colspan=>"3"}= f.text_area(:specialty, :style => 'width: 300px')
+  
+
+
+%tr
+  %td= f.label(:category_ids, '學群')
+  %td{:colspan=>"3"}
+    = f.collection_check_boxes :category_ids, @categories, :id, :category do |b| 
+      %div= b.label { b.check_box + b.text } 
+    
+  
+%tr
+  %td= f.label(:note, '備註')
+  %td{:colspan=>"3"}= f.text_area(:note, :style => 'width: 300px')
+  
+
+
+
+

@@ -1,0 +1,44 @@
+%table.highlight
+  %tbody
+    %tr
+      %td 姓名
+      %td{:colspan => "3"}= f.text_field(:name)
+    %tr
+      %td 電話
+      %td{:colspan => "3"}= f.telephone_field(:phone)
+    %tr
+      %td 信箱
+      %td{:colspan => "3"}= f.text_field(:email)
+
+    %tr
+      %td 入學年份
+      %td{:colspan => "3"}= f.number_field(:year, :min => @years.pluck(:year).min, :max => @years.pluck(:year).max)
+    %tr
+      %td 備取順序
+      %td{:colspan => "3"}= f.number_field(:waiting_list, :min => 0)
+    %tr
+      %td 入學組別
+      %td{:colspan => "3"}= collection_select(:student, :entry_group_id, @groups, :id, :group)
+
+    %tr
+      %td 研究生組別
+      %td{:colspan => "3"}= collection_select(:student, :group_id, @groups, :id, :group)
+    %tr
+      %td 現任指導教授 (新)
+      %td
+        = collection_select(:student, :vacancy_id, @teachers, :id, :name)
+        %span.pad-left-24
+          = f.check_box :personal, {}, "true", "false"
+          使用個人名額
+      %td 現任共同指導 (新)
+      %td
+        = collection_select(:student, :coop_vacancy_id, @teachers, :id, :name)
+        %span.pad-left-24
+          = f.check_box :coop_personal, {}, "true", "false"
+          使用個人名額
+    %tr
+      %td 更換前指導教授 (舊)
+      %td= collection_select(:student, :replaced_id, @teachers, :id, :name)
+      %td 更換前共同指導 (舊)
+      %td= collection_select(:student, :coop_replaced_id, @teachers, :id, :name)
+

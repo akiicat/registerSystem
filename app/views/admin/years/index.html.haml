@@ -1,0 +1,34 @@
+= content_for :left_bar do
+  #left_bar
+    = render(:partial => '/admin/features/overview')
+
+%h2.caption 名額年份
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+%ol.header_information
+  %li 新增年份請先確認教師共指所用名額是否正確，新增後不可更改，若要更改請先刪除年份再重新新增
+  %li 刪除年份時會把所有名額和學生一併刪除
+
+.header_button
+  = form_tag(admin_years_path, {:method => :post}) do
+    = number_field_tag(:year, nil, :min => 102, :style => 'width: 150px;', :placeholder => '新增年份')
+    %a.secondary-content.pad-left-12
+      = submit_tag('新增', :class => "action", :onclick => "Materialize.toast('<span>處理中</span>', 2000);")
+
+.card-panel
+  %table.highlight
+    %col{:width => "15%"}/
+    %col{:width => "10%"}/
+    %col{:width => "50%"}/
+    %tbody
+      %tr
+        %td 年份
+        %td 封存
+        %td 已成為研究生人數
+        %td
+
+      - @years.each do |year|
+        = render(:partial => "admin/years/year", locals: {params_year: year.year, params_archive: year.archive, params_count: @students.where('year = ? AND (vacancy_id != 0 OR coop_vacancy_id != 0)', year.year).count} )

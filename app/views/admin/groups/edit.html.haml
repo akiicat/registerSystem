@@ -1,0 +1,22 @@
+= content_for :left_bar do
+  #left_bar
+    = render :partial => '/admin/features/overview'
+
+%h2.caption 職稱
+.divider
+%br
+
+= form_tag(admin_group_path(@groups), :method => 'PATCH', :remote => true) do
+  .secondary-content.pad-left-12
+    %button.action 更新
+  = link_to(admin_groups_path, :class => 'secondary-content pad-left-12') do
+    %button 上一頁
+
+  %br
+  %br
+  %br
+
+  %ul#ul_group.collection.z-depth-1
+    - @groups.each do |group|
+      %li.collection-item
+        = text_field_tag("group_ids[#{group.id}][group]", group.group)

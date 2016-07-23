@@ -1,0 +1,57 @@
+/ params_year
+
+/ index
+= link_to(admin_years_path, :method => :get, :class => 'pad-left-12') do
+  / bug fixed: it will be default when "enter"
+  - if current_page?(action: 'edit')
+    %button{:disabled => true} 年度選單
+  - else
+    %button 年度選單
+
+/ ratio
+= link_to(ratio_admin_year_path(params_year), :method => :get, :class => 'pad-left-12') do
+  - if current_page?(action: 'ratio')
+    %button.share{:disabled => true} 基本資料
+  - else
+    %button.share 基本資料
+
+/ show
+= link_to(admin_year_path(params_year), :method => :get, :class => 'pad-left-12') do
+  - if current_page?(action: 'show')
+    %button.share{:disabled => true} 所有名額
+  - else
+    %button.share 所有名額
+
+/ remain
+= link_to(remain_admin_year_path(params_year), :method => :get, :class => 'pad-left-12') do
+  - if current_page?(action: 'remain')
+    %button.share{:disabled => true} 剩餘名額
+  - else
+    %button.share 剩餘名額
+
+/ edit update
+- if current_page?(action: 'edit')
+  .secondary-content.pad-left-12{:onclick => "Materialize.toast('<span>處理中</span>', 2000);" }
+    %button.action 更新名額
+- else
+  = link_to(edit_admin_year_path(params_year), :method => :get, :class => 'secondary-content pad-left-12') do
+    %button.action 編輯名額
+
+/ archive
+= link_to(archive_admin_year_path(params_year), :method  => :post, :class => 'pad-left-12', :onclick => "Materialize.toast('<span>處理中</span>', 2000);") do
+  %button.action 封存
+
+/ Export CSV file
+= link_to(admin_year_path(params_year, :format => :csv), :class => 'pad-left-12', :onclick => "Materialize.toast('<span>處理中</span>', 2000);") do
+  %button.action 匯出
+
+/ Delete All Year
+= link_to(admin_year_path(params_year), :method  => :delete, :class => 'pad-left-12', :data => { :confirm => "#{params_year} 整年度的學生將會被刪除 是否刪除 #{params_year} 年份?"}) do
+  %button.create 刪除
+
+
+
+
+
+
+

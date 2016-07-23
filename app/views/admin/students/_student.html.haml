@@ -1,0 +1,47 @@
+/ params_year: @year, params_groups: @groups, params_students: @students, params_teachers: @teachers, params_vacancies: @vacancies
+
+%tr
+  %td 入學組別
+  %td 研究生組別
+  %td 學生姓名
+  %td 狀態
+  %td 正/備取
+  %td 指導教授
+  %td
+
+- params_groups.each do |gid|
+  - params_students.where(:entry_group_id => gid.id).all_sort_by_name.each do |student|
+    %tr
+      / 入學組別
+      %td
+        - entry = student.entry_group_id
+        = (entry) ? params_groups.find(entry).group[0..3] : "-"
+      / 研究生組別
+      %td
+        - group = student.group
+        = (group) ? params_groups.find(group).group[0..3] : "-"
+      / 學生姓名
+      %td= student.name
+      / 狀態
+      %td
+        = color_status(student.status)
+        = (student.repl) ? "更換" : ""
+      / 正/備取
+      %td
+        - list  = student.waiting_list
+        = (list) ? "備取 #{list}" : "正取"
+      / 指導教授
+      %td
+        - vids = [student.vacancy_id, student.coop_vacancy_id].compact
+        - vids.each do |vid|
+          - vacancy = params_vacancies.find(vid)
+          - url     = admin_vacancy_path(vacancy.confirm)
+          - if current_page?(url)
+            = vacancy.teacher.name
+          - else
+            = link_to(url, :method => :get) do 
+              %span.teal-text= vacancy.teacher.name
+
+        %td
+          /Edit
+          = link_to('編輯', edit_admin_student_path(student.confirm),  :class  => 'secondary-content pad-left-12') 

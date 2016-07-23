@@ -1,0 +1,14 @@
+%h2.caption 管理員清單
+.divider
+.header_information
+  .green-text=flash[:notice]
+  .red-text=flash[:error]
+
+.header_button
+  = link_to(new_develop_admin_path, :class => 'pad-left-12') do
+    %button.action 新增
+
+  .card-panel
+    %table.highlight
+      %tbody
+        = render @admins

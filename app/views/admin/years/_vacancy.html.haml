@@ -1,0 +1,25 @@
+/ params_year params_groups params_teachers
+
+%tr
+  %td 姓名
+  - params_groups.each do |group|
+    %td.text-center
+      = group.group[0..3]
+  %td
+
+- params_teachers.each do |teacher|
+  %tr
+    %td= teacher.name
+    - vacancy = teacher.vacancies.find_by(:year => params_year)
+    - number_list = to_number(vacancy)
+    - remain_list = to_remain(vacancy)
+    - params_groups.each do |group|
+      - number = number_list["group_#{group.id}"]
+      - remain = remain_list["group_#{group.id}"]
+      %td.no-padding.text-center
+        = color_number(number) if current_page?(action: 'show')
+        = color_number(remain) if current_page?(action: 'remain')
+        - if current_page?(action: 'edit')
+          = number_field_tag("vacancy_ids[#{vacancy.id}][group_#{group.id}]", number, :min => 0, :step => 0.5, :style => 'width: 40px;')
+    %td
+      = link_to('詳細資料', admin_vacancy_path(vacancy.confirm), :class => 'secondary-content pad-left-12')
