@@ -7,6 +7,9 @@
 # config
 config/rails_env
 
+# assets
+public/assets/*
+
 # Ignore bundler config.
 .bundle
 
