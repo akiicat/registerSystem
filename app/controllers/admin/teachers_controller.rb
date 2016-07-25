@@ -22,7 +22,7 @@ class Admin::TeachersController < Admin::ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to admin_teachers_path }
+      format.html { redirect_to admin_teachers_path, :method => :get }
     end
   end
 
@@ -62,7 +62,7 @@ class Admin::TeachersController < Admin::ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to admin_teachers_path }
+      format.html { redirect_to admin_teachers_path, :method => :get }
     end
   end
 
@@ -87,7 +87,7 @@ class Admin::TeachersController < Admin::ApplicationController
     flash[:error] = "更新失敗" if not @teacher.update(teacher_params)
     
     respond_to do |format|
-      format.html { redirect_to admin_teachers_path }
+      format.html { redirect_to admin_teachers_path, :method => :get }
     end
   end
 
@@ -98,7 +98,7 @@ class Admin::TeachersController < Admin::ApplicationController
     flash[:error] = "刪除失敗" if @std_count == 0 and not @teacher.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_teachers_path }
+      format.html { redirect_to admin_teachers_path, :method => :get }
     end
   end
 

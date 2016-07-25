@@ -12,7 +12,7 @@
     .secondary-content.pad-left-12
       %button.action 修改
 
-    = link_to(admin_teachers_path, :class => "pad-left-12") do
+    = link_to(admin_teachers_path, :method => :get, :class => "pad-left-12") do
       %button 上一頁
     = link_to(admin_teacher_path(@teacher), :method => :delete, :class => 'pad-left-12 pad-right-12', :data => {:confirm => "是否刪除 #{@teacher.name} ?"}) do 
       - if @std_count == 0

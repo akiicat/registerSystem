@@ -11,7 +11,7 @@
   .header_button
     .secondary-content
       = f.submit('新增', :class => 'action')
-    = link_to(admin_teachers_path) do
+    = link_to(admin_teachers_path, :method => :get) do
       %button 上一頁
 
   .card-panel
