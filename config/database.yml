@@ -9,12 +9,15 @@
 #  host: ip
 #  reconnect: true
 
-sqlite_settings: &sqlite_settings
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-  database: db/development.sqlite3
+#sqlite_settings: &sqlite_settings
+#  adapter: sqlite3
+#  pool: 5
+#  timeout: 5000
+#  database: db/development.sqlite3
 
+#test:
+#  <<: *sqlite_settings
+#  database: db/test.sqlite3
 
 development:
   url: <%= ENV['DATABASE_URL_DEV'] %>
@@ -24,7 +27,4 @@ production:
   url: <%= ENV['DATABASE_URL'] %>
   pool: 5
 
-test:
-  <<: *sqlite_settings
-  #database: db/test.sqlite3
 
