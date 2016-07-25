@@ -15,14 +15,14 @@ sqlite_settings: &sqlite_settings
   timeout: 5000
   database: db/development.sqlite3
 
-pg: &pg
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: 5
 
 development:
-  <<: *pg
+  url: <%= ENV['DATABASE_URL_DEV'] %>
+  pool: 5
+
 production:
-  <<: *pg
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: 5
 
 test:
   <<: *sqlite_settings
