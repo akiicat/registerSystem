@@ -10,7 +10,7 @@
 #  reconnect: true
 
 sqlite_settings: &sqlite_settings
-  adapter: sqlite3
+#  adapter: sqlite3
   pool: 5
   timeout: 5000
 
