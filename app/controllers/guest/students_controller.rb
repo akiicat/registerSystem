@@ -1,5 +1,5 @@
 class Guest::StudentsController < Guest::ApplicationController
-  
+  layout 'print'
   def show
     @student   = Student.find_by(:confirm => params[:id])
     @studentID = (@student.studentID) ? @student.studentID   : ''
@@ -23,39 +23,8 @@ class Guest::StudentsController < Guest::ApplicationController
     end
 
     respond_to do |format|
-      format.pdf do
-        report = nil
-
-        # don't used add_field :replaced
-        # :replaced is reserved in liberconv
-        replace_field = lambda do |r|
-          r.add_field :student    , @student.name
-          r.add_field :teacherre , @replaced.join('、')
-          r.add_field :teacher    , @teachers.join('、')
-
-          r.add_field :student_id , @studentID
-          r.add_field :group      , @group
-          r.add_field :year       , @time.year
-          r.add_field :month      , @time.month
-          r.add_field :day        , @time.day
-        end
-
-        # gem 'odf-report'
-        if @student.repl
-          report = ODFReport::Report.new("#{Rails.root}/lib/odt_templates/contract_replace.odt") {|r| replace_field.call(r)}
-        else
-          report = ODFReport::Report.new("#{Rails.root}/lib/odt_templates/contract.odt") {|r| replace_field.call(r)}
-        end
-
-        odt_file = Tempfile.new('contract_odt_', "#{Rails.root}/tmp/contract")
-        pdf_file = Tempfile.new('contract_pdf_', "#{Rails.root}/tmp/contract")
-      
-        # gem 'libreconv'
-        report.generate(odt_file.path)
-        Libreconv.convert(odt_file.path, pdf_file.path)
-
-        # Respond to the request by sending the temp file
-        send_file pdf_file.path, filename: "contract_#{@student.name}_#{@student.confirm[0..7]}#{@time.strftime "%Y%m%dt%H%M%S%z"}.pdf", disposition: 'attachment'
+      format.html do
+        @page_title = "#{@student.name}_#{@student.year}_#{@group[0..3]}_#{@student.confirm[0..7]}"
       end
     end
   end

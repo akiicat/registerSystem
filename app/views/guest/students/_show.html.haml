@@ -1,0 +1,41 @@
+.text-center.fs-16.pad-top-24= "國立交通大學 電子工程學系 電子研究所碩士班"
+.text-center.fs-16.pad-bottom-12= "研究生敦請碩士論文指導教授協議書"
+
+.fs-10
+  .pad-top-24.in-2
+    = "電子研究所碩士班研究生　#{@student.name}　敦請　#{@teachers.join('、')}　教授為碩士論文指導教授，該生願遵守下列規定："
+
+  .pad-top-24.out-2
+    = "一、論文研究期間非特殊理由不得更換指導教授，更換指導教授須經原指導教授書面同意，並向研究所報備。"
+  .pad-top-24.out-2
+    = "二、非經指導教授同意，不得擅自更換研究題目。"
+  .pad-top-24.out-2
+    = "三、論文提請口試前，研究生須擬具其研究論文之重要内容及重要學術貢獻，敦請指導教授向本系推薦，否則本系將不予安排論文口試。"
+  .pad-top-24.out-2
+    = "四、研究生須遵循指導教授關於論文研究之規定與指導，若未遵循，則指導教授得向系所報備後中止指導關係並由系所通知學生。"
+  .pad-top-24.out-2
+    = "五、研究生休學，即暫停指導教授與該生之指導關係。復學後，若請原指導教授繼續指導，不須重新簽定指導教授協議書，若更換指導教授，則須簽定「研究生更換碩士論文指導教授申請書」。"
+
+
+.row
+  .col.s9.offset-s3
+    .pad-top-12.pad-bottom-24= "此　　致"
+
+  .col.s8.offset-s1
+    .pad-bottom-18= "指導教授："
+  .col.s3= "(簽章)"
+
+  .col.s8.offset-s1
+    .pad-bottom-36= "所　　長："
+  .col.s3= "(簽章)"
+
+  .col.s4.offset-s6
+    .fs-8.pad-bottom-12= "研　究　生："
+  .col.s2
+    .fs-8= "(簽章)"
+  .col.s6.offset-s6
+    .fs-8.pad-bottom-12= "學　　號："
+  .col.s6.offset-s6
+    .fs-8.pad-bottom-12= "入學組別：　#{@group}"
+
+.fs-12.pad-top-48.text-center= "中　華　民　國　#{@time.year}　年　#{@time.month}　月　#{@time.day}　日"

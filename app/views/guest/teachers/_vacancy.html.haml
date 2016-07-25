@@ -25,5 +25,5 @@
           - students = params_students.where(sql, vacancy.year, 'completed', vacancy.id, vacancy.id)
           - ap students
           - students.each do |student|
-            = link_to(student_path(student.confirm, :format => :pdf), :onclick => "Materialize.toast('<span>檔案生成中</span>', 7000);") do
+            = link_to(student_path(student.confirm), :method => :get) do
               %p= student.name

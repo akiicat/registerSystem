@@ -10,7 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ * require_tree .
  *= require_self
  */
 
@@ -62,8 +62,10 @@ $primary-color: color("teal", "darken-1") !default;
 }*/
 
 /* layout */
-header, main, footer {
-  padding-left: 240px;
+@media screen and (min-width: 992px) {
+  header, main, footer {
+    padding-left: 240px;
+  }
 }
 
 body {
@@ -132,7 +134,7 @@ $types: (all, vertical, horizon);
 
 /* padding each direction */
 $directions:(top,right,bottom,left);
-@for $i from 1 through 64 {
+@for $i from 1 through 128 {
   @each $dir in $directions {
     .pad-#{$dir}-#{$i} {
       padding-#{$dir}: #{$i}px;
@@ -176,3 +178,51 @@ $directions:(top,right,bottom,left);
   opacity: 0;
 }
 
+
+
+@mixin p-inside($shift) {
+  .out-#{$shift}{
+    margin-left : #{$shift}em; 
+    text-indent : -#{$shift}em;
+  }
+  .in-#{$shift}{
+    margin-left : 0em; 
+    text-indent : #{$shift}em;
+  }
+}
+
+@for $i from 1 through 4 {
+  @include p-inside($i);
+}
+
+@for $i from 0 through 40 {
+  .fs-#{$i} {
+    font-size: #{0.05 * $i + 0.5}em;
+  }
+  .lh-#{$i} {
+    line-height: #{0.05 * $i + 0.5}em;
+  }
+  .ls-#{$i} {
+    letter-spacing: #{0.05 * $i + 0.5}em;
+  }
+}
+
+.img-overlap {
+    position: absolute;
+    top: 12.5%;
+    z-index: -1;
+}
+
+@for $i from 0 through 10 {
+  .img-trsp-#{$i} {
+    opacity: #{0.1 * $i};
+    filter: alpha(opacity=#{10 * $i});
+  }
+}
+
+.wd-150 {
+  width: 150px;
+}
+.wd-75 {
+  width: 75px;
+}
