@@ -6,6 +6,7 @@
 
 # config
 config/rails_env
+Gemfile.lock
 
 # Ignore bundler config.
 .bundle
