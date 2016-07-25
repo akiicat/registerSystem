@@ -4,13 +4,14 @@ module ApplicationHelper
   end
   
   def color_number(number)
-    if number.to_f < 0 
+    number = number.to_f
+    if number < 0 
       return "<span class='red-text'> #{number} </span>".html_safe 
     end
-    if number.to_f == 0
+    if number == 0
       return "<span> - </span>".html_safe
     end
-    if number.to_f > 0
+    if number > 0
       return "<span> #{number} </span>".html_safe
     end
   end
