@@ -14,11 +14,9 @@ cp config/rails_env_template config/rails_env
 source config/rails_env
 ```
 
-## Configurate database and migrate
-Setting the `config/database.yml` like `config/database_template.yml`.
+## Migrate
 Rake `seeds.rb` when you first time migrate database.
 ```sh
-cp config/database_template.yml config/database.yml
 cp db/seeds_default.rb db/seeds.rb
 RAILS_ENV=production bin/rake db:create db:migrate db:seed
 ```
