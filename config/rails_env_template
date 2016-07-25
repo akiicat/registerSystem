@@ -15,4 +15,4 @@ export DEV_USERNAME=dev_username
 export DEV_PASSWORD=Digest::SHA1.hexdigest(dev_password)
 
 export SECRET_KEY_BASE=rake_secret
-export SECRET_TOKEN=rake_secret
+export DATABASE_URL=postgres://username:password@host:port/database

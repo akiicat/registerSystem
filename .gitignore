@@ -5,7 +5,6 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # config
-config/database.yml
 config/rails_env
 
 # Ignore bundler config.

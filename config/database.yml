@@ -1,0 +1,26 @@
+#postgresql_settings: &postgresql_settings
+#  adapter: postgresql
+#  encoding: unicode
+#  pool: 5
+#  port: 5432
+#  wait_timeout: 5000
+#  username: postgres
+#  password: bHs9HEw5
+#  host: ip
+#  reconnect: true
+
+sqlite_settings: &sqlite_settings
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *sqlite_settings
+  database: db/development.sqlite3
+test:
+  <<: *sqlite_settings
+  database: db/test.sqlite3
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: 5
