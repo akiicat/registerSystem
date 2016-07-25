@@ -1,0 +1,39 @@
+.text-center.fs-16.pad-top-24= "國立交通大學 電子工程學系 電子研究所碩士班"
+.text-center.fs-16.pad-bottom-12= "研究生敦請碩士論文指導教授協議書"
+
+
+.in-2.fs-13.lh-30.pad-top-24
+  = "本系電子研究所碩士班研究生　#{@student.name}"
+  %br/
+  = "原敦請　#{@replaced.join('、')}　教授擔任碩士論文指導教授並簽訂指導教授協議書，現因"
+  %br/
+  = "「　　　　　　　　　　　　　　　　　　　　」理由擬申請變更指導教授為　#{@teachers.join('、')}"
+  %br/
+  = "並同意不將原指導教授已發表或未發表之研究論文、内容、構想、原創性技術方法作為碩士學位論文之一部分。敬請同意。"
+
+
+.row
+  .col.s9.offset-s3
+    .pad-top-24.pad-bottom-96= "此　　致"
+
+
+  .col.s8.offset-s1
+    .pad-bottom-18= "原指導教授："
+  .col.s3= "(簽章)"
+  .col.s8.offset-s1
+    .pad-bottom-18= "變更後指導教授："
+  .col.s3= "(簽章)"
+  .col.s8.offset-s1
+    .pad-bottom-48= "所　　長："
+  .col.s3= "(簽章)"
+
+  .col.s4.offset-s6
+    .fs-8.pad-bottom-12= "研　究　生："
+  .col.s2
+    .fs-8= "(簽章)"
+  .col.s6.offset-s6
+    .fs-8.pad-bottom-12= "學　　號："
+  .col.s6.offset-s6
+    .fs-8.pad-bottom-12= "入學組別：　#{@group}"
+
+.fs-12.pad-top-64.text-center= "中　華　民　國　#{@time.year}　年　#{@time.month}　月　#{@time.day}　日"
