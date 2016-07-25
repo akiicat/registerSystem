@@ -26,19 +26,19 @@
     %tr
       %td 現任指導教授 (新)
       %td
-        = collection_select(:student, :vacancy_id, @teachers, :id, :name)
+        = collection_select(:student, :vacancy_id, @teachers, :id, :name, {}, {:class => 'wd-75'})
         %span.pad-left-24
           = f.check_box :personal, {}, "true", "false"
-          使用個人名額
+          個人名額
       %td 現任共同指導 (新)
       %td
-        = collection_select(:student, :coop_vacancy_id, @teachers, :id, :name)
+        = collection_select(:student, :coop_vacancy_id, @teachers, :id, :name, {}, {:class => 'wd-75'})
         %span.pad-left-24
           = f.check_box :coop_personal, {}, "true", "false"
-          使用個人名額
+          個人名額
     %tr
       %td 更換前指導教授 (舊)
-      %td= collection_select(:student, :replaced_id, @teachers, :id, :name)
+      %td= collection_select(:student, :replaced_id, @teachers, :id, :name, {}, {:class => 'wd-75'})
       %td 更換前共同指導 (舊)
-      %td= collection_select(:student, :coop_replaced_id, @teachers, :id, :name)
+      %td= collection_select(:student, :coop_replaced_id, @teachers, :id, :name, {}, {:class => 'wd-75'})
 
