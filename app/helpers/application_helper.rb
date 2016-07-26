@@ -28,6 +28,12 @@ module ApplicationHelper
     return "<span> 完成 </span>".html_safe                     if status.in? ['completed']
   end
 
+  def color_entry(entry)
+    return "<span class='blue-text'> 未決定 </span>".html_safe if entry.in? ['pending']
+    return "<span class='red-text'> 放棄 </span>".html_safe    if entry.in? ['give_up']
+    return "<span> 就讀 </span>".html_safe                     if entry.in? ['attended']
+  end
+
   def to_number(vacancy)
     return JSON.parse(vacancy.number)
   end

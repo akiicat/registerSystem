@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222071732) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20160726082728) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -27,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160222071732) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "admins", ["confirm"], name: "index_admins_on_confirm", using: :btree
+  add_index "admins", ["confirm"], name: "index_admins_on_confirm"
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
@@ -62,12 +59,13 @@ ActiveRecord::Schema.define(version: 20160222071732) do
     t.string   "confirm"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "entry"
   end
 
-  add_index "students", ["confirm"], name: "index_students_on_confirm", using: :btree
-  add_index "students", ["coop_vacancy_id"], name: "index_students_on_coop_vacancy_id", using: :btree
-  add_index "students", ["group_id"], name: "index_students_on_group_id", using: :btree
-  add_index "students", ["vacancy_id"], name: "index_students_on_vacancy_id", using: :btree
+  add_index "students", ["confirm"], name: "index_students_on_confirm"
+  add_index "students", ["coop_vacancy_id"], name: "index_students_on_coop_vacancy_id"
+  add_index "students", ["group_id"], name: "index_students_on_group_id"
+  add_index "students", ["vacancy_id"], name: "index_students_on_vacancy_id"
 
   create_table "teacher_categoryships", force: :cascade do |t|
     t.integer  "teacher_id"
@@ -76,8 +74,8 @@ ActiveRecord::Schema.define(version: 20160222071732) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "teacher_categoryships", ["category_id"], name: "index_teacher_categoryships_on_category_id", using: :btree
-  add_index "teacher_categoryships", ["teacher_id"], name: "index_teacher_categoryships_on_teacher_id", using: :btree
+  add_index "teacher_categoryships", ["category_id"], name: "index_teacher_categoryships_on_category_id"
+  add_index "teacher_categoryships", ["teacher_id"], name: "index_teacher_categoryships_on_teacher_id"
 
   create_table "teachers", force: :cascade do |t|
     t.string   "name"
@@ -96,8 +94,8 @@ ActiveRecord::Schema.define(version: 20160222071732) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "teachers", ["confirm"], name: "index_teachers_on_confirm", using: :btree
-  add_index "teachers", ["title_id"], name: "index_teachers_on_title_id", using: :btree
+  add_index "teachers", ["confirm"], name: "index_teachers_on_confirm"
+  add_index "teachers", ["title_id"], name: "index_teachers_on_title_id"
 
   create_table "titles", force: :cascade do |t|
     t.string   "title"
@@ -117,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160222071732) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "vacancies", ["confirm"], name: "index_vacancies_on_confirm", using: :btree
-  add_index "vacancies", ["teacher_id"], name: "index_vacancies_on_teacher_id", using: :btree
+  add_index "vacancies", ["confirm"], name: "index_vacancies_on_confirm"
+  add_index "vacancies", ["teacher_id"], name: "index_vacancies_on_teacher_id"
 
 end

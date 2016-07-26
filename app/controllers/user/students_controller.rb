@@ -19,7 +19,7 @@ class User::StudentsController < User::ApplicationController
 
   def new
     @page_title = '新增學生' + NCTUEE_TITLE
-    @students   = Student.where(:year => params[:year])
+    @students   = Student.where(:year => params[:year], :entry => 'attended')
     @groups     = Group.where("id != 8")
     @year       = @students.first.year
   end

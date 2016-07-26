@@ -9,10 +9,24 @@
 
 = f.fields_for :students do |li|
   .pad-bottom-12
-    = li.text_field :name, :placeholder => "姓名"
-    = li.telephone_field :phone, :placeholder => "電話"
-    = li.text_field :email, :placeholder => "信箱"
-    = li.number_field :waiting_list, :placeholder => "備取順序", :min => 0
+    = li.number_field :waiting_list, :placeholder => "備取順序", :min => 0, :class => 'wd-50'
+    = li.text_field :name, :placeholder => "姓名", :class => 'wd-100'
+    = li.telephone_field :phone, :placeholder => "電話", :class => 'wd-100'
+    = li.text_field :email, :placeholder => "信箱", :class => 'wd-150'
+
+    -# arr = [["未決定", :pending], ["就讀", :attended], ["放棄", :give_up]]
+    =# li.select(:entry, options_for_select(arr))
+
+    %span.pad-left-12
+      = li.radio_button(:entry, "attended")
+      = "就讀"
+    %span.pad-left-12
+      = li.radio_button(:entry, "give_up")
+      = "放棄"
+    %span.pad-left-12
+      = li.radio_button(:entry, "pending", checked: true)
+      = "未決定"
+
     = li.link_to_remove(:class => "secondary-content", :tabindex => "-1") do 
       %button.create{:tabindex => "-1"} 移除
 

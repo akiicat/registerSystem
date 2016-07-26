@@ -28,6 +28,7 @@ class Admin::StudentsController < Admin::ApplicationController
     Student.transaction do
       count = 0
       students_params.compact.each do |student|
+        ap student
         s = Student.new(student)
         s.year           = year_params
         s.entry_group_id = group_params
@@ -154,9 +155,9 @@ private
    group = params.require(:group).permit(:id)
    group[:id]
   end
-  
+
   def students_params
-   std = params.require(:group).permit(:students_attributes => [:name, :phone, :email, :waiting_list])
+   std = params.require(:group).permit(:students_attributes => [:name, :phone, :email, :waiting_list, :entry])
    std[:students_attributes].values
   end
 
@@ -167,7 +168,7 @@ private
   def student_params
     params.require(:student).permit(
       :group_id, :entry_group_id, :vacancy_id, :coop_vacancy_id, :replaced_id, :coop_replaced_id,
-      :year, :repl, :waiting_list, :name, :email, :phone, :personal, :coop_personal)
+      :year, :repl, :waiting_list, :name, :email, :phone, :personal, :coop_personal, :entry)
   end
 
   def keep_vacancy(vacancies, student)

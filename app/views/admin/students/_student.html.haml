@@ -4,6 +4,7 @@
   %td 入學組別
   %td 研究生組別
   %td 學生姓名
+  %td 就讀
   %td 狀態
   %td 正/備取
   %td 指導教授
@@ -12,25 +13,28 @@
 - params_groups.each do |gid|
   - params_students.where(:entry_group_id => gid.id).all_sort_by_name.each do |student|
     %tr
-      / 入學組別
+      -# 入學組別
       %td
         - entry = student.entry_group_id
         = (entry) ? params_groups.find(entry).group[0..3] : "-"
-      / 研究生組別
+      -# 研究生組別
       %td
         - group = student.group
         = (group) ? params_groups.find(group).group[0..3] : "-"
-      / 學生姓名
+      -# 學生姓名
       %td= student.name
-      / 狀態
+      -# 就讀/放棄/未決定
+      %td
+        = color_entry(student.entry)
+      -# 狀態
       %td
         = color_status(student.status)
         = (student.repl) ? "更換" : ""
-      / 正/備取
+      -# 正/備取
       %td
         - list  = student.waiting_list
         = (list) ? "備取 #{list}" : "正取"
-      / 指導教授
+      -# 指導教授
       %td
         - vids = [student.vacancy_id, student.coop_vacancy_id].compact
         - vids.each do |vid|

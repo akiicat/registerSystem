@@ -18,7 +18,14 @@
       %td{:colspan => "3"}= f.number_field(:waiting_list, :min => 0)
     %tr
       %td 入學組別
-      %td{:colspan => "3"}= collection_select(:student, :entry_group_id, @groups, :id, :group)
+      %td= collection_select(:student, :entry_group_id, @groups, :id, :group)
+      %td{:colspan => "2"}
+        = f.radio_button(:entry, "pending", checked: true)
+        = "未決定"
+        = f.radio_button(:entry, "attended")
+        = "就讀"
+        = f.radio_button(:entry, "give_up")
+        = "放棄"
 
     %tr
       %td 研究生組別

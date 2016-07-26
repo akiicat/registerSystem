@@ -15,6 +15,7 @@ class Student < ActiveRecord::Base
   validates :studentID, :allow_blank => true, :uniqueness => true
   validates :year     , :presence    => true
   validates :status   , :presence    => true, inclusion: { in: %w(waiting inviting completed) }
+  validates :entry    , :presence    => true, inclusion: { in: %w(pending attended give_up) }
 
   validates :confirm  , :presence    => true
 

@@ -220,9 +220,8 @@ $directions:(top,right,bottom,left);
   }
 }
 
-.wd-150 {
-  width: 150px;
-}
-.wd-75 {
-  width: 75px;
+@for $i from 1 through 10 {
+  .wd-#{25 * $i} {
+    width: #{25 * $i}px;
+  }
 }
