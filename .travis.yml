@@ -3,3 +3,5 @@ deploy:
   app: registerSystem
   api_key:
     secure: $(CI_API_KEY)
+  on:
+    rvm: 2.3.1
