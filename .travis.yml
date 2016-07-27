@@ -1,0 +1,5 @@
+deploy:
+  provider: heroku
+  app: registerSystem
+  api_key:
+    secure: $(CI_API_KEY)
