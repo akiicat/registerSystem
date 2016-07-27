@@ -15,9 +15,9 @@
 #  timeout: 5000
 #  database: db/development.sqlite3
 
-#test:
-#  <<: *sqlite_settings
-#  database: db/test.sqlite3
+test:
+  url: <%= ENV['DATABASE_URL_DEV'] %>
+  pool: 5
 
 development:
   url: <%= ENV['DATABASE_URL_DEV'] %>
