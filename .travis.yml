@@ -4,4 +4,4 @@ deploy:
   api_key:
     secure: $(CI_API_KEY)
   on:
-    ruby: 2.3.1
+    rvm: 2.3.1p112
