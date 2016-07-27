@@ -1,7 +1,6 @@
+rvm: 2.0.0
 deploy:
   provider: heroku
   app: registerSystem
   api_key:
     secure: $(CI_API_KEY)
-  on:
-    rvm: 2.0.0
