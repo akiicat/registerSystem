@@ -4,4 +4,4 @@ deploy:
   api_key:
     secure: $(CI_API_KEY)
   on:
-    rvm: 2.2.0
+    rvm: 2.0.0
