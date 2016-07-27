@@ -1,4 +1,8 @@
+language: ruby
 rvm: 2.2.0
+
 deploy:
   provider: heroku
   buildpack: ruby
+  skip_cleanup: true
+  api_key: ${CI_API_KEY}
