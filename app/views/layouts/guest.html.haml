@@ -4,9 +4,9 @@
     %title= @page_title || "Guest"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = stylesheet_link_tag    'https://fonts.googleapis.com/icon?family=Material+Icons'
-    = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css'
-    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js'
+    = stylesheet_link_tag    '//fonts.googleapis.com/icon?family=Material+Icons'
+    = stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css'
+    = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js'
     = csrf_meta_tags
   %body
     = render :partial => 'guest/features/nav_bar', locals: {params_teacher: @teacher_session}

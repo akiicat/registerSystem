@@ -6,7 +6,7 @@ class ApplicationMailer < ActionMailer::Base
 
 private
   def domain_url
-    domain     = "http://" + ENV['DOMAIN']
+    domain     = "https://" + ENV['DOMAIN']
     @guest_url = domain
     @user_url  = domain + '/user/login'
     @admin_url = domain + '/admin/login'
