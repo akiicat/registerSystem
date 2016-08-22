@@ -21,7 +21,7 @@
       %tr
         %td 學生
         %td
-          %span.red-text 列印後請於三天繳交至系辦公室，不含假日。
+          %span.red-text 列印後請於三天內繳交至系辦公室 (不含假日)。
           - sql = 'year = ? AND status = ? AND (vacancy_id = ? OR coop_vacancy_id = ?)'
           - students = params_students.where(sql, vacancy.year, 'completed', vacancy.id, vacancy.id)
           - ap students
