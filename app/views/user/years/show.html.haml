@@ -6,12 +6,9 @@
   .red-text=flash[:error]
 
 .header_button
-  = link_to(user_years_path, :class => 'pad-left-12') do
-    %button 年度選單
-  = link_to(new_user_student_path(:year => @year), :method => :get, :class => 'secondary-content pad-left-12')  do 
+  = link_to(new_user_student_path(:year => @year), :method => :get, :class => 'pad-left-12')  do 
     %button.action 新增學生
-  /= link_to(vacancy_user_teacher_path(@teacher.salt, :year => @year.year), :class => 'secondary-content pad-left-12') do
-  /  %button.share 教師名額
+
 
 
 .card-panel
