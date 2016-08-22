@@ -10,7 +10,7 @@
         = f.collection_select(:group_id, params_groups, :id, :group)
       .header_button.form-group
         = f.check_box(:personal, {}, "true", "false")
-        = f.label(:personal, '是否使用個人名額')
+        = f.label(:personal, '個人名額 (若要使用個人名額，請勾選)')
 
 .header_information
   %h5 Step 2. 新增 或 邀請另外一位教授共同指導
