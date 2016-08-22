@@ -1,1 +1,1 @@
-window.location = '<%= user_years_path %>';
+window.location = '<%= user_year_path(@year) %>';

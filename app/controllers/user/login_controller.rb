@@ -17,6 +17,7 @@ class User::LoginController < User::ApplicationController
     end
 
     session[:user] = @teacher.confirm
+    @year = Vacancy.pluck(:year).uniq.sort.last
     # auth.js.coffee to redirect
   end
   
