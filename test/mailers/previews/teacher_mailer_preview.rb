@@ -11,6 +11,12 @@ class TeacherMailerPreview < ActionMailer::Preview
     student = Student.first
     TeacherMailer.accept_student(teacher, student)
   end
+  def teacher_accept_student_co
+    teacher = Teacher.first
+    student = Student.first
+    teacher_co = Teacher.last
+    TeacherMailer.accept_student(teacher, student, teacher_co)
+  end
   def student_accepted
     teachers = [Teacher.first, Teacher.last]
     student = Student.first
