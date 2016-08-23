@@ -102,8 +102,8 @@ class User::StudentsController < User::ApplicationController
         # EMAIL_HERE
         t1 = Vacancy.find(@student.vacancy_id).teacher
         t2 = Vacancy.find(@student.coop_vacancy_id).teacher
-        TeacherMailer.accept_student(t1, @student).deliver_later
-        TeacherMailer.accept_student(t2, @student).deliver_later
+        TeacherMailer.accept_student(t1, @student, t2).deliver_later
+        TeacherMailer.accept_student(t2, @student, t1).deliver_later
         StudentMailer.accepted(@student, [t1, t2]).deliver_later
       rescue
         @student.coop_personal = false

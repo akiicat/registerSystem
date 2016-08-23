@@ -8,7 +8,7 @@ class StudentMailer < ApplicationMailer
     mail(to: %(#{@student.name} <#{@student.email}>), subject: '研究所師資管理系統 通知訊息')
   end
 
-  # ----------- no used ----------------
+  # ----------- not use ----------------
 
   def destroy(student, teachers)
     @student      = student

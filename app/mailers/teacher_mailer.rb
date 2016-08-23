@@ -8,9 +8,10 @@ class TeacherMailer < ApplicationMailer
 
   # User::StudentsController#create
   # User::StudentsController#accept
-  def accept_student(teacher, student)
+  def accept_student(teacher, student, teacher_co = nil)
     @teacher = teacher
     @student = student
+    @teacher_co = teacher_co
     mail(to: %(#{@teacher.name} <#{@teacher.email}>), subject: '研究所師資管理系統 通知訊息')
   end
 
@@ -22,7 +23,7 @@ class TeacherMailer < ApplicationMailer
     mail(to: %(#{@teacher.name} <#{@teacher.email}>), subject: "研究所師資管理系統 共同指導邀請通知")
   end
 
-  # ----------- no used ----------------
+  # ----------- not use ----------------
 
   def cancel_coopTeacher(teacher, student, teacher_co)
     @teacher    = teacher
