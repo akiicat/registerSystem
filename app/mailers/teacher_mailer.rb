@@ -23,14 +23,13 @@ class TeacherMailer < ApplicationMailer
     mail(to: %(#{@teacher.name} <#{@teacher.email}>), subject: "研究所師資管理系統 共同指導邀請通知")
   end
 
-  # ----------- not use ----------------
-
-  def cancel_coopTeacher(teacher, student, teacher_co)
+  def cancel_student(teacher, student)
     @teacher    = teacher
     @student    = student
-    @teacher_co = teacher_co
-    mail(to: %(#{@teacher.name} <#{@teacher.email}>), subject: "研究所師資管理系統 共同指導取消邀請通知")
+    mail(to: %(#{@teacher.name} <#{@teacher.email}>), subject: "研究所師資管理系統 取消指導關係通知")
   end
+  
+  # ----------- not use ----------------
 
   def reject_coopTeacher(teacher, student, teacher_co)
     @teacher    = teacher

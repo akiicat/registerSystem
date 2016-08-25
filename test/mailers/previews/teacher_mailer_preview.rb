@@ -28,4 +28,17 @@ class TeacherMailerPreview < ActionMailer::Preview
     student    = Student.first
     TeacherMailer.invite_coopTeacher(teacher, student, teacher_co)
   end
+
+  def teacher_cancel_student
+    teacher    = Teacher.first
+    student    = Student.first
+    TeacherMailer.cancel_student(teacher, student)
+  end
+
+  def student_cancel
+    teachers = [Teacher.first, Teacher.last]
+    student = Student.first
+    StudentMailer.cancel(student, teachers)
+  end
+
 end
