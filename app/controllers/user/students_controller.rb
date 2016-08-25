@@ -123,6 +123,10 @@ class User::StudentsController < User::ApplicationController
 
   # if destroy, cancel or reject 
   def destroy
+    cancel_email = (@student.status == "completed") ? true : false
+    teachers = [@student.vacancy_id, @student.coop_vacancy_id].compact!
+    teachers.map!{ |tid| Vacancy.find(tid).teacher }
+
     Student.transaction do
       begin
         # - keep old vacancy
@@ -138,9 +142,17 @@ class User::StudentsController < User::ApplicationController
           vacancy = count_vacancy(array["vacancy_id"], array["group_id"], array["personal"])
           vacancy.save!
         end
-        # EMAIL_HERE
       rescue
         flash[:error] = "取消指導/取消邀請/拒絕邀請學生失敗"
+        cancel_email = false
+      end
+    end
+
+    # EMAIL_HERE
+    if cancel_email
+      StudentMailer.cancel(@student, teachers).deliver_later
+      teachers.each do |teacher|
+        TeacherMailer.cancel_student(teacher, @student).deliver_later
       end
     end
 
