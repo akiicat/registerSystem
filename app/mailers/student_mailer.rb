@@ -8,7 +8,8 @@ class StudentMailer < ApplicationMailer
     mail(to: %(#{@student.name} <#{@student.email}>), subject: '研究所師資管理系統 通知訊息')
   end
 
- def cancel(student, teachers)
+  # User::StudentsController#destroy
+  def cancel(student, teachers)
     @student      = student
     @teacher_name = Array.new
     teachers.each { |teacher| @teacher_name.push(teacher.name) }
