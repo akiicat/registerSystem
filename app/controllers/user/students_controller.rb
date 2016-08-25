@@ -124,7 +124,7 @@ class User::StudentsController < User::ApplicationController
   # if destroy, cancel or reject 
   def destroy
     cancel_email = (@student.status == "completed") ? true : false
-    teachers = [@student.vacancy_id, @student.coop_vacancy_id].compact!
+    teachers = [@student.vacancy_id, @student.coop_vacancy_id].compact
     teachers.map!{ |tid| Vacancy.find(tid).teacher }
 
     Student.transaction do
