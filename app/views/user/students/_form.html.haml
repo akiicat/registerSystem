@@ -1,7 +1,7 @@
 / params_student: @student, params_groups: @groups, params_teachers: @teachers
 
 .header_information
-  %h5 Step 1. 選取研究生組別 與 是否使用共指名額
+  %h5 Step 1. 選取研究生組別 與 是否使用個人彈性名額
 .row
   .col.s12
     .card-panel
@@ -10,7 +10,7 @@
         = f.collection_select(:group_id, params_groups, :id, :group)
       .header_button.form-group
         = f.check_box(:personal, {}, "true", "false")
-        = f.label(:personal, '個人名額 (若要使用個人名額，請勾選)')
+        = f.label(:personal, '個人彈性名額 (若要使用個人彈性名額，請勾選)')
 
 .header_information
   %h5 Step 2. 新增 或 邀請另外一位教授共同指導
